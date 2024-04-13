@@ -28,6 +28,26 @@ app.post("/createuser", async (req, res) => {
     }
 })
 
+app.post("/login", async (req, res) => {
+    const data = req.body;
+    try {
+        const user = await User.findOne({ email: data.email });
+        if (!user) {
+            return res.status(401).json({ message: "Wrong email or password" });
+        }
+
+        const isPasswordValid = user.password === data.password;
+        if (!isPasswordValid) {
+            return res.status(401).json({ message: "Wrong email or password" });
+        }
+
+        res.status(200).json(user);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
 app.listen(5000, () => {
     console.log("app runing on http://localhost:5000")
 })
