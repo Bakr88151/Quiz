@@ -3,7 +3,7 @@ const express = require('express');
 const User = require("./models/user.model")
 const LoginLog = require("./models/loginlog.model")
 
-await mongoose.connect("mongodb+srv://admin:xxnJCQSAiWu4Dj9@backenddb.d54ccom.mongodb.net/quiz-api?retryWrites=true&w=majority&appName=BackendDB")
+mongoose.connect("mongodb+srv://admin:xxnJCQSAiWu4Dj9@backenddb.d54ccom.mongodb.net/quiz-api?retryWrites=true&w=majority&appName=BackendDB")
 .then(() => {
     console.log("database connected");
 })
